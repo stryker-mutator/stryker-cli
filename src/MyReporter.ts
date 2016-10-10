@@ -7,9 +7,9 @@ export default class MyReporter implements Reporter {
   }
 
   /**
-     * Called when a source file was loaded
-     * @param file The immutable source file
-     */
+   * Called when a source file was loaded
+   * @param file The immutable source file
+   */
   onSourceFileRead(file: SourceFile): void {
 
   }
@@ -39,9 +39,9 @@ export default class MyReporter implements Reporter {
   }
 
   /**
-   * Called when stryker wants to quite
+   * Called when stryker wants to quit
    * Gives a reporter the ability to finish up any async tasks
-   * Stryker will not close untill the promise is either resolved or rejected.
+   * Stryker will not close until the promise is either resolved or rejected.
    * @return a promise which will resolve when the reporter is done reporting
    */
   wrapUp(): void | Promise<void> {

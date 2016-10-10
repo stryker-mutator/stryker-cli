@@ -19,8 +19,8 @@ New features are welcome! Either as requests or proposals.
 6. When creating commits, please conform to [the angular commit message style](https://docs.google.com/document/d/1rk04jEuGfk9kYzfqCuOlPTSJw3hEDZJTBN5E5f1SALo/edit).
    Namely in the form `<type>(<scope>): <subject>\n\n[body]`
    * Type: feat, fix, docs, style, refactor, test, chore.
-   * Scope can the the file or group of files (not a strict right or wrong)
-   * Subject and body: present tense (~changed~*change*, ~added~*add*) and include motivation and contrasts with previous behavior
+   * Scope can be the file or group of files (not a strict right or wrong)
+   * Subject and body: present tense (~changed~*change*, ~added~*add*) and include motivation and contrasts with previous behaviour
   
 
 Don't get discouraged! We estimate that the response time from the
@@ -35,7 +35,7 @@ Please report a bug report on our [issues page](https://github.com/stryker-mutat
 1. Label the issue as bug
 2. Explain what the bug is in clear English
 3. Include reproduction steps
-   This can be an example project, code snippit, etc
+   This can be an example project, code snippet, etc
 4. Include the expected behaviour.
 5. Include actual behaviour.
 6. Add more details if required (i.e. which browser, which test runner, which versions, etc)

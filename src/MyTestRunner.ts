@@ -1,4 +1,4 @@
-import { TestRunner, RunnerOptions, RunOptions, RunResult, TestResult, RunState, TestState } from 'stryker-api/test_runner';
+import { TestRunner, RunnerOptions, RunOptions, RunResult, TestResult, RunStatus, TestStatus } from 'stryker-api/test_runner';
 import { EventEmitter } from 'events';
 
 /**
@@ -60,13 +60,13 @@ export default class MyTestRunner extends EventEmitter implements TestRunner {
        */
       name: '',
       /**
-       * The state of the test
+       * The status of the test
        */
-      state: TestState.Success,
+      status: TestStatus.Success,
       /**
        * Optional: any error messages
        */
-      // errorMessages: string[];
+      // failureMessages: string[];
 
       /**
        * Optional: the time it took
@@ -80,13 +80,13 @@ export default class MyTestRunner extends EventEmitter implements TestRunner {
        */
       tests: [oneTestResult],
       /**
-       * If `state` is `error`, this collection should contain the error messages
+       * If `status` is `error`, this collection should contain the error messages
        */
       errorMessages: ['Error, test runner not implemented'],
       /**
-       * The state of the run
+       * The status of the run
        */
-      state: RunState.Complete,
+      status: RunStatus.Complete,
       /**
        * Optional: the code coverage result of the run.
        */

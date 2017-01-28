@@ -5,14 +5,14 @@
 This is the command-line interface (CLI) for [Stryker](http://stryker-mutator.github.io), the JavaScript mutation testing framework.
 
 # Installation
-Stryker can be easily installed using NPM.
+The Stryker CLI can be easily installed using NPM.
 
 ```
 > npm install stryker-cli
 ```
 
 # Usage 
-The stryker-cli will always use your local installation of Stryker.
+The Stryker CLI will always use your local installation of Stryker.
 Commands are simply passed on to Stryker.
 
 Please execute the `help` command for more info.

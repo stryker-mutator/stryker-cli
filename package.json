@@ -28,17 +28,19 @@
     "stryker-api": "^0.4.1"
   },
   "dependencies": {
-    "chalk": "^1.1.1"
+    "chalk": "^1.1.1",
+    "inquirer": "^3.0.1"
   },
   "devDependencies": {
     "@types/chai-as-promised": "0.0.29",
+    "@types/chalk": "^0.4.31",
     "@types/estree": "0.0.34",
+    "@types/inquirer": "0.0.32",
     "@types/lodash": "^4.14.4",
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.45",
     "@types/sinon": "^1.16.31",
     "@types/sinon-chai": "^2.7.27",
-    "@types/chalk": "^0.4.31",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "grunt": "^1.0.1",
@@ -56,7 +58,8 @@
     "mocha": "^3.1.0",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
-    "stryker-api": "^0.4.1",
+    "stryker": "^0.5.7",
+    "stryker-api": "^0.4.2",
     "tslint": "^4.4.2",
     "typescript": "^2.1.4"
   }

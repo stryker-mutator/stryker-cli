@@ -1,6 +1,6 @@
 {
   "name": "stryker-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Command-line interface (CLI) for Stryker, the JavaScript mutation testing framework",
   "main": "src/index.js",
   "scripts": {
@@ -38,6 +38,7 @@
     "@types/node": "^6.0.45",
     "@types/sinon": "^1.16.31",
     "@types/sinon-chai": "^2.7.27",
+    "@types/chalk": "^0.4.31",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "grunt": "^1.0.1",

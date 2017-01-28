@@ -2,10 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 
-const NODE_MODULES_DIRNAME = "node_modules";
-const STRYKER_DIRNAME = "stryker";
-const BIN_DIRNAME = "bin";
-const STRYKER_FILENAME = "stryker";
+const NODE_MODULES_DIRNAME = 'node_modules';
+const STRYKER_DIRNAME = 'stryker';
+const BIN_DIRNAME = 'bin';
+const STRYKER_FILENAME = 'stryker';
 
 function fileExists(filePath: string) {
     try {
@@ -26,6 +26,6 @@ try {
         require(strykerPathFromBuild);
     }
 } catch (error) {
-    console.error(chalk.red.bold("Cannot find Stryker!\nPlease install Stryker using 'npm install stryker'."));
+    console.error(chalk.red.bold('Cannot find Stryker!\nPlease install Stryker using "npm install stryker".'));
     process.exit(1);
 }

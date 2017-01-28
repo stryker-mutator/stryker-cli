@@ -1,10 +1,11 @@
 {
   "name": "stryker-cli",
   "version": "0.0.1",
-  "description": "Command-line interface (CLI) for Stryker",
-  "main": "src/app.js",
+  "description": "Command-line interface (CLI) for Stryker, the JavaScript mutation testing framework",
+  "main": "src/index.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "start": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -14,7 +15,7 @@
     "stryker",
     "cli"
   ],
-  "author": "DiedB",
+  "author": "nicojs",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/stryker-mutator/stryker-cli/issues"
@@ -23,10 +24,13 @@
   "peerDependencies": {
     "stryker-api": "^0.4.1"
   },
+  "dependencies": {
+    "chalk": "^1.1.1"
+  },
   "devDependencies": {
     "@types/chai-as-promised": "0.0.29",
     "@types/estree": "0.0.34",
-    "@types/lodash": "^4.14.37",
+    "@types/lodash": "^4.14.4",
     "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.45",
     "@types/sinon": "^1.16.31",
@@ -49,7 +53,7 @@
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "stryker-api": "^0.4.1",
-    "tslint": "^3.15.1",
-    "typescript": "^2.0.3"
+    "tslint": "^4.4.2",
+    "typescript": "^2.1.4"
   }
 }

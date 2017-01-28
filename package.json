@@ -1,25 +1,25 @@
 {
-  "name": "stryker-plugin-seed",
-  "version": "0.1.0",
-  "description": "A seed project for stryker plugins",
-  "main": "src/index.js",
+  "name": "stryker-cli",
+  "version": "0.0.1",
+  "description": "Command-line interface (CLI) for Stryker",
+  "main": "src/app.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/stryker-mutator/stryker-plugin-seed.git"
+    "url": "git+ssh://git@github.com/stryker-mutator/stryker-cli.git"
   },
   "keywords": [
     "stryker",
-    "seed"
+    "cli"
   ],
-  "author": "nicojs",
+  "author": "DiedB",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/stryker-mutator/stryker-plugin-seed/issues"
+    "url": "https://github.com/stryker-mutator/stryker-cli/issues"
   },
-  "homepage": "https://github.com/stryker-mutator/stryker-plugin-seed#readme",
+  "homepage": "https://github.com/stryker-mutator/stryker-cli#readme",
   "peerDependencies": {
     "stryker-api": "^0.4.1"
   },

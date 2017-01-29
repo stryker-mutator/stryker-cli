@@ -53,7 +53,7 @@ if (fileExists(strykerPathFromNode)) {
   inquirer.prompt([{ type: 'confirm', name: 'install', message: 'Do you want to automatically install Stryker?', default: 'true' }]).then((answers) => {
     if (answers['install']) {
       // Install stryker;
-      child.execSync('npm i --save-dev stryker stryker-api', {stdio:[0,1,2]});
+      child.execSync('npm i --save-dev stryker stryker-api', {stdio: [0, 1, 2]});
       console.log(chalk.green('Stryker installation done.'));
       console.log('Get started by using ' + chalk.blue('`stryker init`') + '.');
     } else {

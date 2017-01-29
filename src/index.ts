@@ -23,22 +23,22 @@ const strykerPathFromNode = path.resolve(baseDir, NODE_MODULES_DIRNAME, STRYKER_
 const strykerPathFromBuild = path.resolve(baseDir, BIN_DIRNAME, STRYKER_FILENAME);
 
 const strykerASCII = 
-'\n'+
-chalk.yellow('             |STRYKER|              ')+'\n'+
-chalk.yellow('       ~control the mutants~        ')+'\n'+'\n'+
-chalk.red('           ..####')+chalk.white('@') + chalk.red('####..            ')+'\n'+
-chalk.red('        .########')+chalk.white('@')+chalk.red('########.         ')+'\n'+
-chalk.red('      .#####################.       ')+'\n'+
-chalk.red('     #########')+chalk.yellow('#######')+chalk.red('#########      ')+'\n'+
-chalk.red('    #########')+chalk.yellow('##')+chalk.red('#####')+chalk.yellow('##')+chalk.red('#########     ')+'\n'+
-chalk.red('    #########')+chalk.yellow('##')+chalk.red('################     ')+'\n'+
-chalk.red('    ')+chalk.white('@@@')+chalk.red('#######')+chalk.yellow('#######')+chalk.red('#######')+chalk.white('@@@')+chalk.red('     ')+'\n'+
-chalk.red('    ################')+chalk.yellow('##')+chalk.red('#########     ')+'\n'+
-chalk.red('    #########')+chalk.yellow('##')+chalk.red('#####')+chalk.yellow('##')+chalk.red('#########     ')+'\n'+
-chalk.red('     #########')+chalk.yellow('#######')+chalk.red('#########      ')+'\n'+
-chalk.red(`      '######################'      `)+'\n'+ 
-chalk.red(`        '########`)+chalk.white('@')+chalk.red(`#########'        `)+'\n'+ 
-chalk.red(`           ''####`)+chalk.white('@')+chalk.red(`####''            `)+'\n'
+'\n' + 
+chalk.yellow('             |STRYKER|              ') + '\n' + 
+chalk.yellow('       ~control the mutants~        ') + '\n' + '\n' + 
+chalk.red('           ..####') + chalk.white('@')  +  chalk.red('####..            ') + '\n' + 
+chalk.red('        .########') + chalk.white('@') + chalk.red('########.         ') + '\n' + 
+chalk.red('      .#####################.       ') + '\n' + 
+chalk.red('     #########') + chalk.yellow('#######') + chalk.red('#########      ') + '\n' + 
+chalk.red('    #########') + chalk.yellow('##') + chalk.red('#####') + chalk.yellow('##') + chalk.red('#########     ') + '\n' + 
+chalk.red('    #########') + chalk.yellow('##') + chalk.red('################     ') + '\n' + 
+chalk.red('    ') + chalk.white('@@@') + chalk.red('#######') + chalk.yellow('#######') + chalk.red('#######') + chalk.white('@@@') + chalk.red('     ') + '\n' + 
+chalk.red('    ################') + chalk.yellow('##') + chalk.red('#########     ') + '\n' + 
+chalk.red('    #########') + chalk.yellow('##') + chalk.red('#####') + chalk.yellow('##') + chalk.red('#########     ') + '\n' + 
+chalk.red('     #########') + chalk.yellow('#######') + chalk.red('#########      ') + '\n' + 
+chalk.red(`      '######################'      `) + '\n' +  
+chalk.red(`        '########`) + chalk.white('@') + chalk.red(`#########'        `) + '\n' +  
+chalk.red(`           ''####`) + chalk.white('@') + chalk.red(`####''            `) + '\n';
 
 
 

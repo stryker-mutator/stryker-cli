@@ -42,13 +42,12 @@ chalk.red(`           ''####`) + chalk.white('@') + chalk.red(`####''           
 
 
 
-console.log(strykerASCII);
-
 if (fileExists(strykerPathFromNode)) {
   require(strykerPathFromNode);
 } else if (fileExists(strykerPathFromBuild)) {
   require(strykerPathFromBuild);
 } else {
+  console.log(strykerASCII);
   console.log(chalk.yellow('Stryker is currently not installed.'));
   inquirer.prompt([{ type: 'confirm', name: 'install', message: 'Do you want to automatically install Stryker?', default: 'true' }]).then((answers) => {
     if (answers['install']) {

@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+'use strict';
+
+process.title = 'stryker-cli';
+
+// Run the TypeScript compiled stryker-cli.js
+require('../src/stryker-cli');

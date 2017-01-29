@@ -22,6 +22,28 @@ const baseDir = process.cwd();
 const strykerPathFromNode = path.resolve(baseDir, NODE_MODULES_DIRNAME, STRYKER_DIRNAME, BIN_DIRNAME, STRYKER_FILENAME);
 const strykerPathFromBuild = path.resolve(baseDir, BIN_DIRNAME, STRYKER_FILENAME);
 
+const strykerASCII = 
+'\n'+
+chalk.yellow('             |STRYKER|              ')+'\n'+
+chalk.yellow('       ~control the mutants~        ')+'\n'+'\n'+
+chalk.red('           ..####')+chalk.white('@') + chalk.red('####..            ')+'\n'+
+chalk.red('        .########')+chalk.white('@')+chalk.red('########.         ')+'\n'+
+chalk.red('      .#####################.       ')+'\n'+
+chalk.red('     #########')+chalk.yellow('#######')+chalk.red('#########      ')+'\n'+
+chalk.red('    #########')+chalk.yellow('##')+chalk.red('#####')+chalk.yellow('##')+chalk.red('#########     ')+'\n'+
+chalk.red('    #########')+chalk.yellow('##')+chalk.red('################     ')+'\n'+
+chalk.red('    ')+chalk.white('@@@')+chalk.red('#######')+chalk.yellow('#######')+chalk.red('#######')+chalk.white('@@@')+chalk.red('     ')+'\n'+
+chalk.red('    ################')+chalk.yellow('##')+chalk.red('#########     ')+'\n'+
+chalk.red('    #########')+chalk.yellow('##')+chalk.red('#####')+chalk.yellow('##')+chalk.red('#########     ')+'\n'+
+chalk.red('     #########')+chalk.yellow('#######')+chalk.red('#########      ')+'\n'+
+chalk.red(`      '######################'      `)+'\n'+ 
+chalk.red(`        '########`)+chalk.white('@')+chalk.red(`#########'        `)+'\n'+ 
+chalk.red(`           ''####`)+chalk.white('@')+chalk.red(`####''            `)+'\n'
+
+
+
+console.log(strykerASCII);
+
 if (fileExists(strykerPathFromNode)) {
   require(strykerPathFromNode);
 } else if (fileExists(strykerPathFromBuild)) {

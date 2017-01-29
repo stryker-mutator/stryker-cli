@@ -29,6 +29,9 @@
     "chalk": "^1.1.1",
     "inquirer": "^3.0.1"
   },
+  "bin": {
+    "stryker": "./bin/stryker-cli"
+  },
   "devDependencies": {
     "@types/chai-as-promised": "0.0.29",
     "@types/chalk": "^0.4.31",

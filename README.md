@@ -10,13 +10,13 @@ This is the command-line interface (CLI) for [Stryker](http://stryker-mutator.gi
 The Stryker CLI can be easily installed using NPM.
 
 ```
-> npm install stryker-cli
+> npm install -g stryker-cli
 ```
 
 # Usage 
 
 The Stryker CLI will always use your local installation of Stryker.
-Commands are simply passed on to Stryker.
+Commands are simply passed on to Stryker. Please execute the Styker CLI commands from your project root directory.
 If you don't have Stryker installed yet, the Stryker CLI will help you with your Stryker installation.
 
 Please execute the `help` command for more info.

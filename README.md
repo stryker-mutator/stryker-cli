@@ -2,9 +2,11 @@
 [![Gitter](https://badges.gitter.im/stryker-mutator/stryker.svg)](https://gitter.im/stryker-mutator/stryker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Stryker Command-Line Interface
+
 This is the command-line interface (CLI) for [Stryker](http://stryker-mutator.github.io), the JavaScript mutation testing framework.
 
 # Installation
+
 The Stryker CLI can be easily installed using NPM.
 
 ```
@@ -12,8 +14,10 @@ The Stryker CLI can be easily installed using NPM.
 ```
 
 # Usage 
+
 The Stryker CLI will always use your local installation of Stryker.
 Commands are simply passed on to Stryker.
+If you don't have Stryker installed yet, the Stryker CLI will help you with your Stryker installation.
 
 Please execute the `help` command for more info.
 

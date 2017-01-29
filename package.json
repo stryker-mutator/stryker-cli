@@ -63,5 +63,17 @@
     "stryker-api": "^0.4.2",
     "tslint": "^4.4.2",
     "typescript": "^2.1.4"
-  }
+  },
+  "contributors": [
+    "Diederik Bakker <diederik@outlook.com>",
+    "Nico Korthout <nicokorthout@gmail.com>",
+    "OlafHaalstra <olaf_haalstra@hotmail.com>",
+    "Simon de Lang <simondelang@gmail.com>",
+    "Alex van Assem <avassem@gmail.com>",
+    "Nico Korthout <korthout@users.noreply.github.com>",
+    "Olaf Haalstra <Olaf Haalstra>",
+    "DiedB <diederik@outlook.com>",
+    "Maarten Mulders <maartenm@infosupport.com>",
+    "Philipp Weissenbacher <philipp.weissenbacher@gmail.com>"
+  ]
 }

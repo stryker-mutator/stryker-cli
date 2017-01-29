@@ -1,8 +1,8 @@
 {
   "name": "stryker-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Command-line interface (CLI) for Stryker, the JavaScript mutation testing framework",
-  "main": "src/index.js",
+  "main": "src/stryker-cli.js",
   "scripts": {
     "test": "grunt test",
     "start": "tsc -w"

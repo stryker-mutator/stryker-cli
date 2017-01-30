@@ -3,7 +3,7 @@
 
 # Stryker Command-Line Interface
 
-This is the command-line interface (CLI) for [Stryker](http://stryker-mutator.github.io), the JavaScript mutation testing framework.
+This is the command-line interface (CLI) for [Stryker](https://stryker-mutator.github.io), the JavaScript mutation testing framework.
 
 # Installation
 

@@ -52,6 +52,7 @@ function installStryker() {
   printStrykerASCII();
   child.execSync('npm i --save-dev stryker stryker-api', { stdio: [0, 1, 2] });
   console.log(chalk.green('Stryker installation done.'));
+  child.execSync('stryker init', { stdio: [0, 1, 2] });
   console.log(`Get started by using ${chalk.blue('`stryker --help`')}.`);
 }
 

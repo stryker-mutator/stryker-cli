@@ -6,13 +6,9 @@ import * as child from 'child_process';
 import * as resolver from 'resolve';
 
 function run() {
-  findPathToProgram('stryker').then(function (pathToProgram: string) {
-    // Run npm program
-    require(pathToProgram);
-  }).catch(function (err) {
-    // Ask to automaticly install Stryker
-    promptInstallStryker();
-  });
+  findPathToProgram('stryker')
+    .then(runStryker)
+    .catch(promptInstallStryker);
 }
 
 function findPathToProgram(program: string): Promise<string> {
@@ -21,15 +17,27 @@ function findPathToProgram(program: string): Promise<string> {
       if (err) {
         reject(err); return;
       }
-
-      let pathToProgram = path.resolve(path.dirname(pathToNpmModule), '../bin/stryker');
-      if (fs.existsSync(pathToProgram)) {
+      const pathToProgram = getPathToProgramFromNpmModule(pathToNpmModule);
+      if (fileExists(pathToProgram)) {
         resolve(pathToProgram);
       } else {
-        reject('Cannot run stryker'); return;
-      } 
+        reject('Unable to find stryker');
+      }
     });
   });
+}
+
+function getPathToProgramFromNpmModule(pathToNpmModule: string) {
+  const dirname = path.dirname(pathToNpmModule);
+  return path.resolve(dirname, '../bin/stryker');
+}
+
+function fileExists(pathToProgram: string) {
+  return fs.existsSync(pathToProgram);
+}
+
+function runStryker(pathToProgram: string) {
+  require(pathToProgram);
 }
 
 function promptInstallStryker() {
@@ -43,16 +51,15 @@ function promptInstallStryker() {
     if (answers['install']) {
       installStryker();
     } else {
-      console.log('I understand. You can install Stryker manually using `npm install stryker`.');
+      console.log(`I understand. You can install Stryker manually using ${chalk.blue('`npm install stryker`')}.`);
     }
   });
 }
 
 function installStryker() {
   printStrykerASCII();
-  child.execSync('npm i --save-dev stryker stryker-api', { stdio: [0, 1, 2] });
-  console.log(chalk.green('Stryker installation done.'));
-  console.log(`Get started by using ${chalk.blue('`stryker --help`')}.`);
+  executeInstallStrykerProcess();
+  run();
 }
 
 function printStrykerASCII() {
@@ -74,6 +81,11 @@ function printStrykerASCII() {
     chalk.red(`        '########`) + chalk.white('@') + chalk.red(`#########'        `) + '\n' +
     chalk.red(`           ''####`) + chalk.white('@') + chalk.red(`####''            `) + '\n';
   console.log(strykerASCII);
+}
+
+function executeInstallStrykerProcess() {
+  child.execSync('npm i --save-dev stryker stryker-api', { stdio: [0, 1, 2] });
+  console.log(chalk.green('Stryker installation done.'));
 }
 
 run();

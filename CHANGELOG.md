@@ -1,3 +1,14 @@
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/stryker-mutator/stryker-cli/compare/v0.0.7...v0.1.0) (2017-06-08)
+
+
+### Bug Fixes
+
+* **stryker-cli.ts:** Call run instead of exec init ([963286d](https://github.com/stryker-mutator/stryker-cli/commit/963286d))
+* **stryker-cli.ts:** Call stryker init after install ([e07aee1](https://github.com/stryker-mutator/stryker-cli/commit/e07aee1))
+
+
+
 <a name="0.0.8"></a>
 ## 0.0.8 (2017-01-30)
 

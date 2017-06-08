@@ -1,3 +1,8 @@
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/stryker-mutator/stryker-cli/compare/v0.1.0...v0.1.1) (2017-06-08)
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/stryker-mutator/stryker-cli/compare/v0.0.7...v0.1.0) (2017-06-08)
 

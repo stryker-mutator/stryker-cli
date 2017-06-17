@@ -1,3 +1,13 @@
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/stryker-mutator/stryker-cli/compare/v0.1.1...v0.1.2) (2017-06-17)
+
+
+### Bug Fixes
+
+* **stryker:** Fix eol problem for shell script ([#24](https://github.com/stryker-mutator/stryker-cli/issues/24)) ([325aa52](https://github.com/stryker-mutator/stryker-cli/commit/325aa52))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/stryker-mutator/stryker-cli/compare/v0.1.0...v0.1.1) (2017-06-08)
 

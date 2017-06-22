@@ -15,6 +15,8 @@ The Stryker-CLI can be easily installed using NPM.
 $ npm install -g stryker-cli
 ```
 
+Note that you should always install the Stryker-CLI globally with `-g` or `--global`. The Stryker-CLI does not include a copy of `stryker` itself. Instead, it needs your local stryker installation (i.e. the stryker installation contained in your project's `node_modules` folder). If you don't have Stryker installed yet, the Stryker-CLI will help you with your Stryker installation. If you want to use stryker directly from npm scripts, feel free to do so without the Stryker-CLI.
+
 # Usage 
 The Stryker-CLI works by passing received commands to your local Stryker installation. If you don't have Stryker installed yet, the Stryker-CLI will help you with your Stryker installation. This method allows us to provide additional commands with updates of Stryker itself.
 

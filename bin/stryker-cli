@@ -5,4 +5,8 @@
 process.title = 'stryker-cli';
 
 // Run the TypeScript compiled stryker-cli.js
-require('../src/stryker-cli');
+require('../src/stryker-cli')
+    .run()
+    .catch(function(error) { 
+        console.error(err);
+    });

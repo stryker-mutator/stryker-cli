@@ -1,57 +1,57 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import * as chalk from 'chalk';
 import * as inquirer from 'inquirer';
 import * as child from 'child_process';
-import * as resolver from 'resolve';
+import NodeWrapper from './NodeWrapper';
+import * as resolve from 'resolve';
 
-function run() {
-  findPathToProgram('stryker')
-    .then(runStryker)
-    .catch(promptInstallStryker);
+const installCommand = 'npm install --save-dev stryker stryker-api';
+
+export function run(): Promise<void> {
+  try {
+    return runLocalStryker();
+  }
+  catch (error) {
+    if (error.toString().indexOf(`Cannot find module 'stryker'`) >= 0) {
+      return promptInstallStryker().then(shouldInstall => {
+        if (shouldInstall) {
+          installStryker();
+          runLocalStryker();
+        }
+      });
+    }
+    else {
+      // Oops, other error
+      return Promise.reject(error);
+    }
+  }
 }
 
-function findPathToProgram(program: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    resolver(program, { basedir: process.cwd() }, (err, pathToNpmModule: string) => {
-      if (err) {
-        reject(err); return;
-      }
-      const pathToProgram = getPathToProgramFromNpmModule(pathToNpmModule);
-      if (fileExists(pathToProgram)) {
-        resolve(pathToProgram);
-      } else {
-        reject('Unable to find stryker');
-      }
-    });
-  });
+function runLocalStryker() {
+  const stryker = localStryker();
+  NodeWrapper.require(stryker);
+  return Promise.resolve();
 }
 
-function getPathToProgramFromNpmModule(pathToNpmModule: string) {
-  const dirname = path.dirname(pathToNpmModule);
+function localStryker() {
+  const stryker = resolve.sync('stryker', { basedir: NodeWrapper.cwd() });
+  const dirname = path.dirname(stryker);
   return path.resolve(dirname, '../bin/stryker');
 }
 
-function fileExists(pathToProgram: string) {
-  return fs.existsSync(pathToProgram);
-}
-
-function runStryker(pathToProgram: string) {
-  require(pathToProgram);
-}
-
-function promptInstallStryker() {
-  console.log(chalk.yellow('Stryker is currently not installed.'));
-  inquirer.prompt([{
+function promptInstallStryker(): Promise<boolean> {
+  NodeWrapper.log(chalk.yellow('Stryker is currently not installed.'));
+  return inquirer.prompt([{
     type: 'confirm',
     name: 'install',
-    message: 'Do you want to automatically install Stryker?',
-    default: 'true'
-  }]).then((answers) => {
+    message: `Do you want to install Stryker locally? (${installCommand})`,
+    default: true
+  }]).then((answers: inquirer.Answers) => {
     if (answers['install']) {
-      installStryker();
+      return true;
     } else {
-      console.log(`I understand. You can install Stryker manually using ${chalk.blue('`npm install stryker`')}.`);
+      NodeWrapper.log(`Ok, I don't agree, but I understand. You can install Stryker manually using ${chalk.blue(installCommand)}.`);
+      return false;
     }
   });
 }
@@ -59,7 +59,6 @@ function promptInstallStryker() {
 function installStryker() {
   printStrykerASCII();
   executeInstallStrykerProcess();
-  run();
 }
 
 function printStrykerASCII() {
@@ -80,12 +79,10 @@ function printStrykerASCII() {
     chalk.red(`      '######################'      `) + '\n' +
     chalk.red(`        '########`) + chalk.white('@') + chalk.red(`#########'        `) + '\n' +
     chalk.red(`           ''####`) + chalk.white('@') + chalk.red(`####''            `) + '\n';
-  console.log(strykerASCII);
+  NodeWrapper.log(strykerASCII);
 }
 
 function executeInstallStrykerProcess() {
-  child.execSync('npm i --save-dev stryker stryker-api', { stdio: [0, 1, 2] });
-  console.log(chalk.green('Stryker installation done.'));
+  child.execSync(installCommand, { stdio: [0, 1, 2] });
+  NodeWrapper.log(chalk.green('Stryker installation done.'));
 }
-
-run();

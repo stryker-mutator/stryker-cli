@@ -68,14 +68,15 @@
     "typescript": "^2.5.3"
   },
   "contributors": [
+    "Nico Korthout <korthout@users.noreply.github.com>",
     "Olaf Haalstra <Olaf Haalstra>",
     "Nico Korthout <nicokorthout@gmail.com>",
-    "Simon de Lang <simondelang@gmail.com>",
     "Diederik Bakker <diederik@outlook.com>",
-    "OlafHaalstra <olaf_haalstra@hotmail.com>",
+    "Simon de Lang <simondelang@gmail.com>",
     "Alex van Assem <avassem@gmail.com>",
-    "Maarten Mulders <maartenm@infosupport.com>",
+    "OlafHaalstra <olaf_haalstra@hotmail.com>",
     "DiedB <diederik@outlook.com>",
+    "Maarten Mulders <maartenm@infosupport.com>",
     "Philipp Weissenbacher <philipp.weissenbacher@gmail.com>"
   ]
 }

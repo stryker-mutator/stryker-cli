@@ -1,3 +1,14 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/stryker-mutator/stryker-cli/compare/v0.1.1...v0.1.3) (2017-10-16)
+
+
+### Bug Fixes
+
+* **infinite install:** Stop after first install ([#27](https://github.com/stryker-mutator/stryker-cli/issues/27)) ([3cebfa8](https://github.com/stryker-mutator/stryker-cli/commit/3cebfa8))
+* **stryker:** Fix eol problem for shell script ([#24](https://github.com/stryker-mutator/stryker-cli/issues/24)) ([325aa52](https://github.com/stryker-mutator/stryker-cli/commit/325aa52))
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/stryker-mutator/stryker-cli/compare/v0.1.1...v0.1.2) (2017-06-17)
 

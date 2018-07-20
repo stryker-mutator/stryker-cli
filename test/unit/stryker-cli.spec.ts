@@ -51,10 +51,11 @@ describe('stryker-cli', () => {
     stubs.prompt.resolves({});
     await run();
     expect(stubs.prompt).calledWith([{
-      type: 'confirm',
+      choices: ['npm', 'yarn', 'no'],
+      type: 'list',
       name: 'install',
-      message: 'Do you want to install Stryker locally? (npm install --save-dev stryker stryker-api)',
-      default: true
+      message: 'Do you want to install Stryker locally?',
+      default: 'npm'
     }]);
   });
 
@@ -68,18 +69,27 @@ describe('stryker-cli', () => {
     expect(stubs.require).calledWith(path.resolve('path/to/bin/stryker'));
   });
 
-  it('should install stryker locally if the user wants it', async () => {
+  it('should install stryker locally using npm if the user wants it', async () => {
     stubs.resolve
       .onFirstCall().throws(new Error(`Error: Cannot find module 'stryker'`))
       .onSecondCall().returns(path.resolve('path/to/local/stryker'));
-    stubs.prompt.resolves({ install: true });
+    stubs.prompt.resolves({ install: 'npm' });
     await run();
     expect(stubs.execSync).calledWith('npm install --save-dev stryker stryker-api', { stdio: [0, 1, 2] });
   });
 
+  it('should install stryker locally using yarn if the user wants it', async () => {
+    stubs.resolve
+      .onFirstCall().throws(new Error(`Error: Cannot find module 'stryker'`))
+      .onSecondCall().returns(path.resolve('path/to/local/stryker'));
+    stubs.prompt.resolves({ install: 'yarn' });
+    await run();
+    expect(stubs.execSync).calledWith('yarn add stryker stryker-api --dev', { stdio: [0, 1, 2] });
+  });
+
   it('should not install stryker if the user didn\'t want it', async () => {
     stubs.resolve.throws(new Error(`Error: Cannot find module 'stryker'`));
-    stubs.prompt.resolves({ install: false });
+    stubs.prompt.resolves({ install: 'no' });
     await run();
     expect(stubs.execSync).not.called;
     expect(stubs.log).calledWith(`Ok, I don't agree, but I understand. You can install Stryker manually ` +

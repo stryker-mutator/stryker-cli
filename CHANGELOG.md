@@ -1,3 +1,13 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/stryker-mutator/stryker-cli/compare/v0.1.3...v0.2.0) (2018-07-20)
+
+
+### Features
+
+* Add support for yarn installs ([#30](https://github.com/stryker-mutator/stryker-cli/issues/30)) ([21fac75](https://github.com/stryker-mutator/stryker-cli/commit/21fac75))
+
+
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/stryker-mutator/stryker-cli/compare/v0.1.1...v0.1.3) (2017-10-16)
 

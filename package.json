@@ -13,7 +13,7 @@
     "url": "git+ssh://git@github.com/stryker-mutator/stryker-cli.git"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "keywords": [
     "stryker",

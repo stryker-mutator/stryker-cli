@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { expect } from 'chai';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import * as sinon from 'sinon';
 import * as inquirer from 'inquirer';
 import * as resolve from 'resolve';
@@ -22,15 +22,15 @@ describe('stryker-cli', () => {
   };
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     stubs = {
-      prompt: sandbox.stub(inquirer, 'prompt'),
-      execSync: sandbox.stub(child, 'execSync'),
-      require: sandbox.stub(NodeWrapper, 'require'),
-      resolve: sandbox.stub(resolve, 'sync'),
-      log: sandbox.stub(NodeWrapper, 'log'),
+      cwd: sandbox.stub(NodeWrapper, 'cwd'),
       error: sandbox.stub(),
-      cwd: sandbox.stub(NodeWrapper, 'cwd')
+      execSync: sandbox.stub(child, 'execSync'),
+      log: sandbox.stub(NodeWrapper, 'log'),
+      prompt: sandbox.stub(inquirer, 'prompt'),
+      require: sandbox.stub(NodeWrapper, 'require'),
+      resolve: sandbox.stub(resolve, 'sync')
     };
   });
 
@@ -52,10 +52,10 @@ describe('stryker-cli', () => {
     await run();
     expect(stubs.prompt).calledWith([{
       choices: ['npm', 'yarn', 'no'],
-      type: 'list',
-      name: 'install',
+      default: 'npm',
       message: 'Do you want to install Stryker locally?',
-      default: 'npm'
+      name: 'install',
+      type: 'list'
     }]);
   });
 
@@ -101,14 +101,14 @@ describe('stryker-cli', () => {
     stubs.require.throws(new Error(`Error: Cannot find module 'FooBar'`));
     return expect(run()).rejectedWith(`Error: Cannot find module 'FooBar'`);
   });
-  
-  it('should not prompt again when failing a second time (with any error)', async() => {
+
+  it('should not prompt again when failing a second time (with any error)', async () => {
     stubs.resolve.throws(new Error(`Error: Cannot find module 'stryker'`));
     stubs.prompt.resolves({ install: true });
     await expect(run()).to.eventually.rejectedWith(`Error: Cannot find module 'stryker'`);
     expect(stubs.resolve).calledTwice; // to verify that there actually was a second time
     expect(stubs.prompt).calledOnce; // the actual check
-    expect(stubs.execSync).calledOnce; 
+    expect(stubs.execSync).calledOnce;
   });
 
 });

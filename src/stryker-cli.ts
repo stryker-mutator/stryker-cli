@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import * as inquirer from 'inquirer';
 import * as child from 'child_process';
 import NodeWrapper from './NodeWrapper';
@@ -13,8 +13,7 @@ const installCommands = {
 export function run(): Promise<void> {
   try {
     return runLocalStryker();
-  }
-  catch (error) {
+  } catch (error) {
     if (error.toString().indexOf(`Cannot find module 'stryker'`) >= 0) {
       return promptInstallStryker().then(packageManager => {
         if (packageManager !== undefined) {
@@ -22,8 +21,7 @@ export function run(): Promise<void> {
           runLocalStryker();
         }
       });
-    }
-    else {
+    } else {
       // Oops, other error
       return Promise.reject(error);
     }
@@ -46,10 +44,10 @@ function promptInstallStryker(): Promise<'npm' | 'yarn' | undefined> {
   NodeWrapper.log(chalk.yellow('Stryker is currently not installed.'));
   return inquirer.prompt([{
     choices: ['npm', 'yarn', 'no'],
-    type: 'list',
-    name: 'install',
+    default: 'npm',
     message: 'Do you want to install Stryker locally?',
-    default: 'npm'
+    name: 'install',
+    type: 'list'
   }]).then((answers: inquirer.Answers) => {
     if (answers.install === 'no') {
       NodeWrapper.log(`Ok, I don't agree, but I understand. You can install Stryker manually using ${chalk.blue(installCommands.npm)}.`);

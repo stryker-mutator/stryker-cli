@@ -5,9 +5,15 @@ import * as child from 'child_process';
 import NodeWrapper from './NodeWrapper';
 import * as resolve from 'resolve';
 
-const installCommands = {
-  npm: 'npm install --save-dev stryker stryker-api',
-  yarn: 'yarn add stryker stryker-api --dev'
+const installCommands: any = {
+  npm: {
+    angular: 'npm install --save-dev stryker stryker-karma-runner stryker-typescript @angular-devkit/build-angular @angular/cli @angular/compiler-cli @angular/language-service @types/jasmine @types/jasminewd2 @types/node codelyzer jasmine-core jasmine-spec-reporter karma karma-chrome-launcher karma-coverage-istanbul-reporter karma-jasmine karma-jasmine-html-reporter protractor ts-node tslint typescript',
+    clear: 'npm install --save-dev stryker stryker-api',
+  },
+  yarn: {
+    angular: 'yarn add stryker stryker-karma-runner stryker-typescript @angular-devkit/build-angular @angular/cli @angular/compiler-cli @angular/language-service @types/jasmine @types/jasminewd2 @types/node codelyzer jasmine-core jasmine-spec-reporter karma karma-chrome-launcher karma-coverage-istanbul-reporter karma-jasmine karma-jasmine-html-reporter protractor ts-node tslint typescript --dev',
+    clear: 'yarn add stryker stryker-api --dev'
+  }
 };
 
 export function run(): Promise<void> {
@@ -17,8 +23,10 @@ export function run(): Promise<void> {
     if (error.toString().indexOf(`Cannot find module 'stryker'`) >= 0) {
       return promptInstallStryker().then(packageManager => {
         if (packageManager !== undefined) {
-          installStryker(installCommands[packageManager]);
-          runLocalStryker();
+          promptInstallPackage().then(selectedPackage => {
+            installStryker(installCommands[packageManager][selectedPackage]);
+            runLocalStryker();
+          });
         }
       });
     } else {
@@ -28,7 +36,7 @@ export function run(): Promise<void> {
   }
 }
 
-function runLocalStryker() {
+function runLocalStryker(): Promise<void> {
   const stryker = localStryker();
   NodeWrapper.require(stryker);
   return Promise.resolve();
@@ -40,30 +48,37 @@ function localStryker() {
   return path.resolve(dirname, '../bin/stryker');
 }
 
-function promptInstallStryker(): Promise<'npm' | 'yarn' | undefined> {
+function promptInstallStryker(): Promise<'npm' | 'yarn'> {
   NodeWrapper.log(chalk.yellow('Stryker is currently not installed.'));
   return inquirer.prompt([{
-    choices: ['npm', 'yarn', 'no'],
+    choices: ['npm', 'yarn'],
     default: 'npm',
-    message: 'Do you want to install Stryker locally?',
+    message: 'Select package manager You want to use?',
     name: 'install',
     type: 'list'
   }]).then((answers: inquirer.Answers) => {
-    if (answers.install === 'no') {
-      NodeWrapper.log(`Ok, I don't agree, but I understand. You can install Stryker manually using ${chalk.blue(installCommands.npm)}.`);
-      return undefined;
-    } else {
-      return answers.install;
-    }
+    return answers.install;
   });
 }
 
-function installStryker(installCommand: string) {
+function promptInstallPackage(): Promise<string> {
+  return inquirer.prompt([{
+    choices: ['angular', 'clear'],
+    default: 'clear',
+    message: 'Select setup you want to use:',
+    name: 'setup',
+    type: 'list'
+  }]).then((answers: inquirer.Answers) => {
+    return answers.setup;
+  });
+}
+
+function installStryker(installCommand: string): void {
   printStrykerASCII();
   executeInstallStrykerProcess(installCommand);
 }
 
-function printStrykerASCII() {
+function printStrykerASCII(): void {
   const strykerASCII =
     '\n' +
     chalk.yellow('             |STRYKER|              ') + '\n' +
@@ -84,7 +99,7 @@ function printStrykerASCII() {
   NodeWrapper.log(strykerASCII);
 }
 
-function executeInstallStrykerProcess(installCommand: string) {
+function executeInstallStrykerProcess(installCommand: string): void {
   NodeWrapper.log(`${chalk.grey('Installing:')} ${installCommand}`);
   child.execSync(installCommand, { stdio: [0, 1, 2] });
   NodeWrapper.log(chalk.green('Stryker installation done.'));

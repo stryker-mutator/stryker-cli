@@ -6,15 +6,15 @@ import NodeWrapper from './NodeWrapper';
 import * as resolve from 'resolve';
 
 const installCommands = {
-  npm: 'npm install --save-dev stryker stryker-api',
-  yarn: 'yarn add stryker stryker-api --dev'
+  npm: 'npm install --save-dev @stryker-mutator/core',
+  yarn: 'yarn add @stryker-mutator/core --dev'
 };
 
 export function run(): Promise<void> {
   try {
     return runLocalStryker();
   } catch (error) {
-    if (error.toString().indexOf(`Cannot find module 'stryker'`) >= 0) {
+    if (error.toString().indexOf(`Cannot find module '@stryker-mutator/core'`) >= 0) {
       return promptInstallStryker().then(packageManager => {
         if (packageManager !== undefined) {
           installStryker(installCommands[packageManager]);
@@ -35,7 +35,7 @@ function runLocalStryker() {
 }
 
 function localStryker() {
-  const stryker = resolve.sync('stryker', { basedir: NodeWrapper.cwd() });
+  const stryker = resolve.sync('@stryker-mutator/core', { basedir: NodeWrapper.cwd() });
   const dirname = path.dirname(stryker);
   return path.resolve(dirname, '../bin/stryker');
 }

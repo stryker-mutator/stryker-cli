@@ -9,6 +9,11 @@ import NodeWrapper from '../../src/NodeWrapper';
 import { run } from '../../src/stryker-cli';
 
 describe('stryker-cli', () => {
+  const basedir = '/apps/myapp';
+  const strykerEntryPath = 'apps/myapp/node_modules/@stryker-mutator/core/src/Stryker.js';
+  const strykerBinPath = 'apps/myapp/node_modules/@stryker-mutator/core/bin/stryker';
+  const errorMessageModuleNotLoaded = `Error: Cannot find module '@stryker-mutator/core'`;
+
   let sandbox: sinon.SinonSandbox;
 
   let stubs: {
@@ -39,15 +44,15 @@ describe('stryker-cli', () => {
   });
 
   it('should pass commands through to local stryker', async () => {
-    stubs.resolve.returns(path.resolve('path/to/local/stryker'));
-    stubs.cwd.returns('/path/to/cwd');
+    stubs.resolve.returns(path.resolve(strykerEntryPath));
+    stubs.cwd.returns(basedir);
     await run();
-    expect(stubs.resolve).calledWith('stryker', { basedir: '/path/to/cwd' });
-    expect(stubs.require).calledWith(path.resolve('path/to/bin/stryker'));
+    expect(stubs.resolve).calledWith('@stryker-mutator/core', { basedir });
+    expect(stubs.require).calledWith(path.resolve(strykerBinPath));
   });
 
   it('should prompt to install stryker if local stryker is not found', async () => {
-    stubs.resolve.throws(new Error(`Error: Cannot find module 'stryker'`));
+    stubs.resolve.throws(new Error(errorMessageModuleNotLoaded));
     stubs.prompt.resolves({});
     await run();
     expect(stubs.prompt).calledWith([{
@@ -61,51 +66,51 @@ describe('stryker-cli', () => {
 
   it('should require local stryker after installing', async () => {
     stubs.resolve
-      .onFirstCall().throws(new Error(`Error: Cannot find module 'stryker'`))
-      .onSecondCall().returns(path.resolve('path/to/local/stryker'));
+      .onFirstCall().throws(new Error(errorMessageModuleNotLoaded))
+      .onSecondCall().returns(path.resolve(strykerEntryPath));
     stubs.prompt.resolves({ install: true });
     await run();
     expect(stubs.resolve).calledTwice;
-    expect(stubs.require).calledWith(path.resolve('path/to/bin/stryker'));
+    expect(stubs.require).calledWith(path.resolve(strykerBinPath));
   });
 
   it('should install stryker locally using npm if the user wants it', async () => {
     stubs.resolve
-      .onFirstCall().throws(new Error(`Error: Cannot find module 'stryker'`))
-      .onSecondCall().returns(path.resolve('path/to/local/stryker'));
+      .onFirstCall().throws(new Error(errorMessageModuleNotLoaded))
+      .onSecondCall().returns(path.resolve(strykerEntryPath));
     stubs.prompt.resolves({ install: 'npm' });
     await run();
-    expect(stubs.execSync).calledWith('npm install --save-dev stryker stryker-api', { stdio: [0, 1, 2] });
+    expect(stubs.execSync).calledWith('npm install --save-dev @stryker-mutator/core', { stdio: [0, 1, 2] });
   });
 
   it('should install stryker locally using yarn if the user wants it', async () => {
     stubs.resolve
-      .onFirstCall().throws(new Error(`Error: Cannot find module 'stryker'`))
-      .onSecondCall().returns(path.resolve('path/to/local/stryker'));
+      .onFirstCall().throws(new Error(errorMessageModuleNotLoaded))
+      .onSecondCall().returns(path.resolve(strykerEntryPath));
     stubs.prompt.resolves({ install: 'yarn' });
     await run();
-    expect(stubs.execSync).calledWith('yarn add stryker stryker-api --dev', { stdio: [0, 1, 2] });
+    expect(stubs.execSync).calledWith('yarn add @stryker-mutator/core --dev', { stdio: [0, 1, 2] });
   });
 
   it('should not install stryker if the user didn\'t want it', async () => {
-    stubs.resolve.throws(new Error(`Error: Cannot find module 'stryker'`));
+    stubs.resolve.throws(new Error(errorMessageModuleNotLoaded));
     stubs.prompt.resolves({ install: 'no' });
     await run();
     expect(stubs.execSync).not.called;
     expect(stubs.log).calledWith(`Ok, I don't agree, but I understand. You can install Stryker manually ` +
-      `using ${chalk.blue('npm install --save-dev stryker stryker-api')}.`);
+      `using ${chalk.blue('npm install --save-dev @stryker-mutator/core')}.`);
   });
 
   it('should pass all other errors', () => {
-    stubs.resolve.returns('path/to/local/stryker');
+    stubs.resolve.returns(strykerEntryPath);
     stubs.require.throws(new Error(`Error: Cannot find module 'FooBar'`));
     return expect(run()).rejectedWith(`Error: Cannot find module 'FooBar'`);
   });
 
   it('should not prompt again when failing a second time (with any error)', async () => {
-    stubs.resolve.throws(new Error(`Error: Cannot find module 'stryker'`));
+    stubs.resolve.throws(new Error(errorMessageModuleNotLoaded));
     stubs.prompt.resolves({ install: true });
-    await expect(run()).to.eventually.rejectedWith(`Error: Cannot find module 'stryker'`);
+    await expect(run()).to.eventually.rejectedWith(errorMessageModuleNotLoaded);
     expect(stubs.resolve).calledTwice; // to verify that there actually was a second time
     expect(stubs.prompt).calledOnce; // the actual check
     expect(stubs.execSync).calledOnce;

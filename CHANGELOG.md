@@ -1,3 +1,20 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/stryker-mutator/stryker-cli/compare/v0.2.0...v1.0.0) (2019-02-13)
+
+
+### Features
+
+* drop NodeJS 4 support ([d90f43c](https://github.com/stryker-mutator/stryker-cli/commit/d90f43c))
+* **@stryker-mutator/core:** Support Stryker v1 ([#34](https://github.com/stryker-mutator/stryker-cli/issues/34)) ([085a4a3](https://github.com/stryker-mutator/stryker-cli/commit/085a4a3))
+
+
+### BREAKING CHANGES
+
+* @stryker-mutator/core: stryker 0.x.x is no longer supported. Only @stryker-mutator/core 1.x.x is supported.
+* Drops support for NodeJS 4
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/stryker-mutator/stryker-cli/compare/v0.1.3...v0.2.0) (2018-07-20)
 

@@ -1,3 +1,13 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/stryker-mutator/stryker-cli/compare/v1.0.0...v1.0.1) (2021-04-29)
+
+
+### Features
+
+* support StrykerJS 4.5 and up ([#42](https://github.com/stryker-mutator/stryker-cli/issues/42)) ([e87493c](https://github.com/stryker-mutator/stryker-cli/commit/e87493c))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/stryker-mutator/stryker-cli/compare/v0.2.0...v1.0.0) (2019-02-13)
 

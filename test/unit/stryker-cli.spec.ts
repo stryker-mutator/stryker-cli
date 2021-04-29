@@ -10,7 +10,7 @@ import { run } from '../../src/stryker-cli';
 
 describe('stryker-cli', () => {
   const basedir = '/apps/myapp';
-  const strykerEntryPath = 'apps/myapp/node_modules/@stryker-mutator/core/src/Stryker.js';
+  const strykerPackageJsonPath = 'apps/myapp/node_modules/@stryker-mutator/core/package.json';
   const strykerBinPath = 'apps/myapp/node_modules/@stryker-mutator/core/bin/stryker';
   const errorMessageModuleNotLoaded = `Error: Cannot find module '@stryker-mutator/core'`;
 
@@ -44,10 +44,10 @@ describe('stryker-cli', () => {
   });
 
   it('should pass commands through to local stryker', async () => {
-    stubs.resolve.returns(path.resolve(strykerEntryPath));
+    stubs.resolve.returns(path.resolve(strykerPackageJsonPath));
     stubs.cwd.returns(basedir);
     await run();
-    expect(stubs.resolve).calledWith('@stryker-mutator/core', { basedir });
+    expect(stubs.resolve).calledWith('@stryker-mutator/core/package.json', { basedir });
     expect(stubs.require).calledWith(path.resolve(strykerBinPath));
   });
 
@@ -67,7 +67,7 @@ describe('stryker-cli', () => {
   it('should require local stryker after installing', async () => {
     stubs.resolve
       .onFirstCall().throws(new Error(errorMessageModuleNotLoaded))
-      .onSecondCall().returns(path.resolve(strykerEntryPath));
+      .onSecondCall().returns(path.resolve(strykerPackageJsonPath));
     stubs.prompt.resolves({ install: true });
     await run();
     expect(stubs.resolve).calledTwice;
@@ -77,7 +77,7 @@ describe('stryker-cli', () => {
   it('should install stryker locally using npm if the user wants it', async () => {
     stubs.resolve
       .onFirstCall().throws(new Error(errorMessageModuleNotLoaded))
-      .onSecondCall().returns(path.resolve(strykerEntryPath));
+      .onSecondCall().returns(path.resolve(strykerPackageJsonPath));
     stubs.prompt.resolves({ install: 'npm' });
     await run();
     expect(stubs.execSync).calledWith('npm install --save-dev @stryker-mutator/core', { stdio: [0, 1, 2] });
@@ -86,7 +86,7 @@ describe('stryker-cli', () => {
   it('should install stryker locally using yarn if the user wants it', async () => {
     stubs.resolve
       .onFirstCall().throws(new Error(errorMessageModuleNotLoaded))
-      .onSecondCall().returns(path.resolve(strykerEntryPath));
+      .onSecondCall().returns(path.resolve(strykerPackageJsonPath));
     stubs.prompt.resolves({ install: 'yarn' });
     await run();
     expect(stubs.execSync).calledWith('yarn add @stryker-mutator/core --dev', { stdio: [0, 1, 2] });
@@ -102,7 +102,7 @@ describe('stryker-cli', () => {
   });
 
   it('should pass all other errors', () => {
-    stubs.resolve.returns(strykerEntryPath);
+    stubs.resolve.returns(strykerPackageJsonPath);
     stubs.require.throws(new Error(`Error: Cannot find module 'FooBar'`));
     return expect(run()).rejectedWith(`Error: Cannot find module 'FooBar'`);
   });

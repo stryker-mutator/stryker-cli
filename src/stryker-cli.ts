@@ -35,9 +35,9 @@ function runLocalStryker() {
 }
 
 function localStryker() {
-  const stryker = resolve.sync('@stryker-mutator/core', { basedir: NodeWrapper.cwd() });
+  const stryker = resolve.sync('@stryker-mutator/core/package.json', { basedir: NodeWrapper.cwd() });
   const dirname = path.dirname(stryker);
-  return path.resolve(dirname, '../bin/stryker');
+  return path.resolve(dirname, './bin/stryker');
 }
 
 function promptInstallStryker(): Promise<'npm' | 'yarn' | undefined> {

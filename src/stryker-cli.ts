@@ -14,7 +14,7 @@ export function run(): Promise<void> {
   try {
     return runLocalStryker();
   } catch (error) {
-    if (error.toString().indexOf(`Cannot find module '@stryker-mutator/core'`) >= 0) {
+    if (error.toString().indexOf(`Cannot find module '@stryker-mutator/core`) >= 0) {
       return promptInstallStryker().then(packageManager => {
         if (packageManager !== undefined) {
           installStryker(installCommands[packageManager]);

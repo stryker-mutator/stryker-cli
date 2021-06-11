@@ -1,3 +1,13 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/stryker-mutator/stryker-cli/compare/v1.0.1...v1.0.2) (2021-06-11)
+
+
+### Bug Fixes
+
+* **stryker-cli:** support missing installation errors on newer npm versions ([#49](https://github.com/stryker-mutator/stryker-cli/issues/49)) ([b109459](https://github.com/stryker-mutator/stryker-cli/commit/b109459))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/stryker-mutator/stryker-cli/compare/v1.0.0...v1.0.1) (2021-04-29)
 

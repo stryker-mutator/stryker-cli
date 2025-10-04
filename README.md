@@ -5,8 +5,7 @@ Instead running and installing Stryker can now be achieved fully through [stryke
 
 For guidance and documentation, visit: https://stryker-mutator.io/docs/stryker-js/getting-started/
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 
 [![Build Status](https://travis-ci.org/stryker-mutator/stryker-cli.svg?branch=master)](https://travis-ci.org/stryker-mutator/stryker-cli)

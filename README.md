@@ -8,6 +8,14 @@ This is the command-line interface (CLI) for [Stryker](https://stryker-mutator.g
 
 If you plan on using Stryker in more projects, the Stryker-CLI is the easiest way to install, configure and run Stryker for your project.
 
+> [!WARNING]
+> Deprecation Warning: `stryker-cli` is deprecated and will no longer receive updates or support.
+
+Instead running and installing stryker can now be achieved fully through `stryker-js`.
+
+For guidance and documentation, visit: https://stryker-mutator.io/docs/stryker-js/getting-started/
+
+
 # Installation
 The Stryker-CLI can be easily installed using NPM.
 

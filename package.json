@@ -1,6 +1,6 @@
 {
   "name": "stryker-cli",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Command-line interface (CLI) for Stryker, the JavaScript mutation testing framework",
   "preferGlobal": true,
   "main": "src/stryker-cli.js",

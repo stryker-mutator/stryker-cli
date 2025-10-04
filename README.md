@@ -1,3 +1,13 @@
+> [!CAUTION]
+> Deprecation Warning: `stryker-cli` is deprecated and will no longer receive updates or support.
+
+Instead running and installing Stryker can now be achieved fully through [stryker-js](https://github.com/stryker-mutator/stryker-js).
+
+For guidance and documentation, visit: https://stryker-mutator.io/docs/stryker-js/getting-started/
+
+<br><br><br><br><br><br><br><br>
+
+
 [![Build Status](https://travis-ci.org/stryker-mutator/stryker-cli.svg?branch=master)](https://travis-ci.org/stryker-mutator/stryker-cli)
 [![Gitter](https://badges.gitter.im/stryker-mutator/stryker.svg)](https://gitter.im/stryker-mutator/stryker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
@@ -7,6 +17,7 @@
 This is the command-line interface (CLI) for [Stryker](https://stryker-mutator.github.io), the JavaScript mutation testing framework.
 
 If you plan on using Stryker in more projects, the Stryker-CLI is the easiest way to install, configure and run Stryker for your project.
+
 
 # Installation
 The Stryker-CLI can be easily installed using NPM.

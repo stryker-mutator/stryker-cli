@@ -1,3 +1,15 @@
+<a name="1.1.0"></a>
+## [1.1.0](https://github.com/stryker-mutator/stryker-cli/compare/v1.0.3...v1.1.0) (2025-11-04)
+
+### Features
+
+* **stryker-cli:** add deprecation message. Please use `npm init stryker@latest` instead. See https://stryker-mutator.io/docs/stryker-js/getting-started/
+
+### Bug Fixes
+
+* **stryker-cli:** support missing installation errors on newer npm versions ([#49](https://github.com/stryker-mutator/stryker-cli/issues/49)) ([b109459](https://github.com/stryker-mutator/stryker-cli/commit/b109459))
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/stryker-mutator/stryker-cli/compare/v1.0.1...v1.0.2) (2021-06-11)
 
